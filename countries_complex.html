@@ -9,8 +9,8 @@
     body {
     padding: 30px;
 }
-
-input[type=range] {
+  
+  input[type=range] {
     /*removes default webkit styles*/
     -webkit-appearance: none;
     
@@ -21,95 +21,96 @@ input[type=range] {
     width: 420px;
     margin-top: 50px;
 
-}
-input[type=range]::-webkit-slider-runnable-track {
-    width: 420px;
-    height: 5px;
-    background: #ddd;
-    border: none;
-    border-radius: 3px;
-}
-input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    background: goldenrod;
-    margin-top: -4px;
-}
-input[type=range]:focus {
-    outline: none;
-}
-input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #ccc;
-}
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 420px;
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: goldenrod;
+        margin-top: -4px;
+    }
+    input[type=range]:focus {
+        outline: none;
+    }
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        background: #ccc;
+    }
 
-input[type=range]::-moz-range-track {
-    width: 400px;
-    height: 5px;
-    background: #ddd;
-    border: none;
-    border-radius: 3px;
-}
-input[type=range]::-moz-range-thumb {
-    border: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    background: goldenrod;
-}
+    input[type=range]::-moz-range-track {
+        width: 400px;
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+    input[type=range]::-moz-range-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: goldenrod;
+    }
 
-/*hide the outline behind the border*/
-input[type=range]:-moz-focusring{
-    outline: 1px solid white;
-    outline-offset: -1px;
-}
+    /*hide the outline behind the border*/
+    input[type=range]:-moz-focusring{
+        outline: 1px solid white;
+        outline-offset: -1px;
+    }
 
-input[type=range]::-ms-track {
-    width: 400px;
-    height: 5px;
-    
-    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
-    background: transparent;
-    
-    /*leave room for the larger thumb to overflow with a transparent border */
-    border-color: transparent;
-    border-width: 6px 0;
+    input[type=range]::-ms-track {
+        width: 400px;
+        height: 5px;
 
-    /*remove default tick marks*/
-    color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-    background: #777;
-    border-radius: 10px;
-}
-input[type=range]::-ms-fill-upper {
-    background: #ddd;
-    border-radius: 10px;
-}
-input[type=range]::-ms-thumb {
-    border: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    background: goldenrod;
-}
-input[type=range]:focus::-ms-fill-lower {
-    background: #888;
-}
-input[type=range]:focus::-ms-fill-upper {
-    background: #ccc;
-}
+        /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+        background: transparent;
 
-  </style>
+        /*leave room for the larger thumb to overflow with a transparent border */
+        border-color: transparent;
+        border-width: 6px 0;
+
+        /*remove default tick marks*/
+        color: transparent;
+    }
+    input[type=range]::-ms-fill-lower {
+        background: #777;
+        border-radius: 10px;
+    }
+    input[type=range]::-ms-fill-upper {
+        background: #ddd;
+        border-radius: 10px;
+    }
+    input[type=range]::-ms-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: goldenrod;
+    }
+    input[type=range]:focus::-ms-fill-lower {
+        background: #888;
+    }
+    input[type=range]:focus::-ms-fill-upper {
+        background: #ccc;
+}
+    </style>
+
+  
   <style id='vega-bind'>
   span{display:none;}
   .vega-bind-name{
         display:inline;
     }
   </style>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     
     
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
@@ -120,7 +121,7 @@ input[type=range]:focus::-ms-fill-upper {
   <div id="vis"></div>
   <script>
     (function(vegaEmbed) {
-      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}, "axis": {"grid": false}}, "hconcat": [{"layer": [{"mark": {"type": "area", "clip": true, "opacity": 0.07}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "scale": {"domain": ["2020-04-13T00:00:00", "2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-05T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-04-27T00:00:00", "2020-04-08T00:00:00", "2020-04-21T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-03-01T00:00:00", "2020-07-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_upper"}, "y2": {"field": "deaths_lower"}}, "transform": [{"filter": {"selection": {"and": ["Location:", "selector003"]}}}]}, {"mark": {"type": "area", "clip": true, "opacity": 0.3}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "scale": {"domain": ["2020-04-13T00:00:00", "2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-05T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-04-27T00:00:00", "2020-04-08T00:00:00", "2020-04-21T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-03-01T00:00:00", "2020-07-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_upper"}, "y2": {"field": "deaths_lower"}}, "transform": [{"filter": {"selection": {"and": ["Location:", "selector003"]}}}, {"filter": "datum.prediction_date < Date_date_reported"}]}, {"mark": {"type": "trail", "clip": true, "opacity": 0.07}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "legend": null, "scale": {"domain": ["2020-04-13T00:00:00", "2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-05T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-04-27T00:00:00", "2020-04-08T00:00:00", "2020-04-21T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-03-01T00:00:00", "2020-07-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_mean"}}, "transform": [{"filter": {"selection": {"and": ["Location:", "selector003"]}}}]}, {"mark": {"type": "line", "clip": true, "opacity": 0.6}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "legend": null, "scale": {"domain": ["2020-04-13T00:00:00", "2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-05T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-04-27T00:00:00", "2020-04-08T00:00:00", "2020-04-21T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-03-01T00:00:00", "2020-07-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_mean"}}, "transform": [{"filter": {"selection": {"and": ["Location:", "selector003"]}}}, {"filter": "datum.prediction_date < Date_date_reported"}]}, {"data": {"url": "data_actuals_countries.json"}, "mark": {"type": "circle", "clip": true, "color": "red"}, "encoding": {"opacity": {"condition": {"value": 1, "test": "(datum.date_reported < Date.date_reported)"}, "value": 0}, "x": {"type": "temporal", "axis": {"title": "Date"}, "field": "date_reported", "scale": {"domain": ["2020-03-01T00:00:00", "2020-07-01T00:00:00"]}}, "y": {"type": "quantitative", "axis": {"title": "Deaths per Day"}, "field": "deaths_mean"}}, "selection": {"Date": {"type": "single", "fields": ["date_reported"], "bind": {"input": "range", "max": 1593561600000.0, "min": 1583020800000.0, "name": "Time:", "step": 90}, "init": {"date_reported": 1585699200000.0}}, "Location:": {"type": "single", "fields": ["location_name"], "bind": {"input": "select", "options": ["Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czechia", "Denmark", "Estonia", "Finland", "France", "Germany", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "United Kingdom", "United States of America"], "name": "Location:"}, "init": {"location_name": "United States of America"}}, "selector003": {"type": "multi", "fields": ["prediction_date"], "init": [{"prediction_date": 1585094400000.0}, {"prediction_date": 1587081600000.0}, {"prediction_date": 1588550400000.0}, {"prediction_date": 1589068800000.0}]}}, "transform": [{"filter": {"selection": "Location:"}}]}, {"data": {"url": "data_predictions_countries.json"}, "mark": {"type": "rule", "color": "goldenrod", "strokeDash": [3, 3]}, "encoding": {"size": {"value": 1}, "x": {"type": "temporal", "aggregate": "max", "field": "date_reported"}}, "transform": [{"filter": {"selection": {"and": ["Location:", "selector003"]}}}, {"filter": "datum.date_reported < Date_date_reported"}]}]}, {"mark": "rect", "encoding": {"color": {"condition": {"type": "temporal", "field": "prediction_date", "selection": "selector003"}, "value": "lightgray"}, "y": {"type": "nominal", "axis": {"labelExpr": "utcFormat(datum.value,'%B %d')", "labels": true, "title": "Model Release Date (Shift-click to add)"}, "field": "prediction_date"}}, "selection": {"selector003": {"type": "multi", "fields": ["prediction_date"], "init": [{"prediction_date": 1585094400000.0}, {"prediction_date": 1587081600000.0}, {"prediction_date": 1588550400000.0}, {"prediction_date": 1589068800000.0}]}}}], "data": {"url": "data_predictions_countries.json"}, "title": "Comparison of Reported COVID19 Deaths Versus IHME Predictions", "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json"};
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}, "axis": {"grid": false}}, "vconcat": [{"layer": [{"mark": {"type": "area", "clip": true, "opacity": 0.07}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "scale": {"domain": ["2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-05T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-04-27T00:00:00", "2020-04-21T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-03-01T00:00:00", "2020-07-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_upper"}, "y2": {"field": "deaths_lower"}}, "transform": [{"filter": {"selection": {"and": ["Location:", "selector043"]}}}]}, {"mark": {"type": "area", "clip": true, "opacity": 0.3}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "scale": {"domain": ["2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-05T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-04-27T00:00:00", "2020-04-21T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-03-01T00:00:00", "2020-07-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_upper"}, "y2": {"field": "deaths_lower"}}, "transform": [{"filter": {"selection": {"and": ["Location:", "selector043"]}}}, {"filter": "datum.prediction_date < Date_date_reported"}]}, {"mark": {"type": "trail", "clip": true, "opacity": 0.07}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "legend": null, "scale": {"domain": ["2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-05T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-04-27T00:00:00", "2020-04-21T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-03-01T00:00:00", "2020-07-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_mean"}}, "transform": [{"filter": {"selection": {"and": ["Location:", "selector043"]}}}]}, {"mark": {"type": "line", "clip": true, "opacity": 0.6}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "legend": null, "scale": {"domain": ["2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-05T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-04-27T00:00:00", "2020-04-21T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-03-01T00:00:00", "2020-07-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_mean"}}, "transform": [{"filter": {"selection": {"and": ["Location:", "selector043"]}}}, {"filter": "datum.prediction_date < Date_date_reported"}]}, {"data": {"url": "data_actuals_countries.json"}, "mark": {"type": "circle", "clip": true, "color": "red"}, "encoding": {"opacity": {"condition": {"value": 1, "test": "(datum.date_reported < Date.date_reported)"}, "value": 0}, "x": {"type": "temporal", "axis": {"title": "Date"}, "field": "date_reported", "scale": {"domain": ["2020-03-01T00:00:00", "2020-07-01T00:00:00"]}}, "y": {"type": "quantitative", "axis": {"title": "Deaths per Day"}, "field": "deaths_mean"}}, "selection": {"Date": {"type": "single", "fields": ["date_reported"], "bind": {"input": "range", "max": 1593561600000.0, "min": 1583020800000.0, "name": "Time:", "step": 90}, "init": {"date_reported": 1585699200000.0}}, "Location:": {"type": "single", "fields": ["location_name"], "bind": {"input": "select", "options": ["Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czechia", "Denmark", "Estonia", "Finland", "France", "Germany", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "United Kingdom", "United States of America"], "name": "Location:"}, "init": {"location_name": "Italy"}}, "selector043": {"type": "multi", "fields": ["prediction_date"], "empty": "none", "toggle": "true"}}, "transform": [{"filter": {"selection": "Location:"}}]}, {"data": {"url": "data_predictions_countries.json"}, "mark": {"type": "rule", "color": "goldenrod", "strokeDash": [3, 3]}, "encoding": {"size": {"value": 1}, "x": {"type": "temporal", "aggregate": "max", "field": "date_reported"}}, "transform": [{"filter": {"selection": {"and": ["Location:", "selector043"]}}}, {"filter": "datum.date_reported < Date_date_reported"}]}]}, {"mark": "rect", "encoding": {"color": {"condition": {"type": "temporal", "field": "prediction_date", "selection": "selector043"}, "value": "lightgray"}, "x": {"type": "nominal", "axis": {"labelExpr": "utcFormat(datum.value,'%B %d')", "labels": true, "title": ""}, "field": "prediction_date"}}, "selection": {"selector043": {"type": "multi", "fields": ["prediction_date"], "empty": "none", "toggle": "true"}}, "title": "Click to add/remove models"}], "data": {"url": "data_predictions_countries.json"}, "title": "Comparison of Reported COVID19 Deaths Versus IHME Predictions", "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json"};
       var embedOpt = {"mode": "vega-lite"};
 
       function showError(el, error){
