@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+    body {
+    padding: 30px;
+    }
+  
+  input[type=range] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+    
+    /*fix for FF unable to apply focus style bug */
+    border: 1px solid white;
+    
+    /*required for proper track sizing in FF*/
+    width: 500px;
+    margin-top: 50px;
+
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 500px;
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: goldenrod;
+        margin-top: -4px;
+    }
+    input[type=range]:focus {
+        outline: none;
+    }
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        background: #ccc;
+    }
+
+    input[type=range]::-moz-range-track {
+        width: 500px;
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+    input[type=range]::-moz-range-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: goldenrod;
+    }
+
+    /*hide the outline behind the border*/
+    input[type=range]:-moz-focusring{
+        outline: 1px solid white;
+        outline-offset: -1px;
+    }
+
+    input[type=range]::-ms-track {
+        width: 500px;
+        height: 5px;
+
+        /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+        background: transparent;
+
+        /*leave room for the larger thumb to overflow with a transparent border */
+        border-color: transparent;
+        border-width: 6px 0;
+
+        /*remove default tick marks*/
+        color: transparent;
+    }
+    input[type=range]::-ms-fill-lower {
+        background: #777;
+        border-radius: 10px;
+    }
+    input[type=range]::-ms-fill-upper {
+        background: #ddd;
+        border-radius: 10px;
+    }
+    input[type=range]::-ms-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: goldenrod;
+    }
+    input[type=range]:focus::-ms-fill-lower {
+        background: #888;
+    }
+    input[type=range]:focus::-ms-fill-upper {
+        background: #ccc;
+}
+    </style>
+
+  
+  <style id='vega-bind'>
+  span{display:none;}
+  .vega-bind-name{
+        display:inline;
+    }
+  </style>
+
+  
+  <style id='vega-bind'>
+  span{display:none;}
+  .vega-bind-name{
+        display:inline;
+    }.vega-embed {
+        position: static !important;
+        display: block !important;
+        padding-right: 0px !important;
+        padding-top: 10px !important;
+        padding-left: 20px !important;
+      }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.8.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 500, "continuousHeight": 300}, "axis": {"grid": false}, "title": {"align": "center", "fontSize": 16}}, "hconcat": [{"layer": [{"data": {"name": "data-026c5aa52ccc549c4f1a8c9ea432ffb6"}, "mark": {"type": "text", "align": "right", "dx": -15, "dy": -130, "fontSize": 14, "fontWeight": "bold"}, "encoding": {"text": {"type": "ordinal", "field": "locations"}, "x": {"type": "temporal", "field": "date"}}, "transform": [{"filter": "datum.locations == Location_location_name"}]}, {"data": {"url": "data_predictions_countries.json"}, "mark": {"type": "area", "clip": true, "opacity": 0.07}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "scale": {"domain": ["2020-04-07T00:00:00", "2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-01T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-20T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-05-12T00:00:00", "2020-04-27T00:00:00", "2020-03-29T00:00:00", "2020-04-22T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-02-23T00:00:00", "2020-08-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_upper"}, "y2": {"field": "deaths_lower"}}, "transform": [{"filter": {"selection": {"and": ["Location", "selector005"]}}}]}, {"data": {"url": "data_predictions_countries.json"}, "mark": {"type": "area", "clip": true, "opacity": 0.3}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "scale": {"domain": ["2020-04-07T00:00:00", "2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-01T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-20T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-05-12T00:00:00", "2020-04-27T00:00:00", "2020-03-29T00:00:00", "2020-04-22T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-02-23T00:00:00", "2020-08-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_upper"}, "y2": {"field": "deaths_lower"}}, "transform": [{"filter": {"selection": {"and": ["Location", "selector005"]}}}, {"filter": "datum.prediction_date < Date_date_reported"}]}, {"data": {"url": "data_predictions_countries.json"}, "mark": {"type": "trail", "clip": true, "opacity": 0.07}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "legend": null, "scale": {"domain": ["2020-04-07T00:00:00", "2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-01T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-20T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-05-12T00:00:00", "2020-04-27T00:00:00", "2020-03-29T00:00:00", "2020-04-22T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-02-23T00:00:00", "2020-08-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_mean"}}, "transform": [{"filter": {"selection": {"and": ["Location", "selector005"]}}}]}, {"data": {"url": "data_predictions_countries.json"}, "mark": {"type": "line", "clip": true, "opacity": 0.6}, "encoding": {"color": {"type": "temporal", "field": "prediction_date", "legend": null, "scale": {"domain": ["2020-04-07T00:00:00", "2020-03-25T00:00:00", "2020-04-10T00:00:00", "2020-04-01T00:00:00", "2020-04-29T00:00:00", "2020-04-17T00:00:00", "2020-05-20T00:00:00", "2020-05-04T00:00:00", "2020-05-10T00:00:00", "2020-05-12T00:00:00", "2020-04-27T00:00:00", "2020-03-29T00:00:00", "2020-04-22T00:00:00"], "range": ["#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF", "#3F7FBF"]}}, "x": {"type": "temporal", "field": "date_reported", "scale": {"domain": ["2020-02-23T00:00:00", "2020-08-01T00:00:00"]}}, "y": {"type": "quantitative", "field": "deaths_mean"}}, "transform": [{"filter": {"selection": {"and": ["Location", "selector005"]}}}, {"filter": "datum.prediction_date < Date_date_reported"}]}, {"data": {"url": "data_actuals_countries.json"}, "mark": {"type": "circle", "clip": true, "color": "red"}, "encoding": {"opacity": {"condition": {"value": 1, "test": "(datum.date_reported < Date.date_reported)"}, "value": 0}, "x": {"type": "temporal", "axis": {"title": "Date"}, "field": "date_reported", "scale": {"domain": ["2020-02-23T00:00:00", "2020-08-01T00:00:00"]}}, "y": {"type": "quantitative", "axis": {"title": "Deaths per Day"}, "field": "deaths_mean"}}, "selection": {"Date": {"type": "single", "fields": ["date_reported"], "bind": {"input": "range", "max": 1596240000000.0, "min": 1582416000000.0, "name": "Time:", "step": 90}, "init": {"date_reported": 1585699200000.0}}, "Location": {"type": "single", "fields": ["location_name"], "bind": {"input": "select", "options": ["Argentina", "Austria", "Belgium", "Brazil", "Bulgaria", "Canada", "Chile", "Colombia", "Croatia", "Cyprus", "Czechia", "Denmark", "Dominican Republic", "Ecuador", "Egypt", "Estonia", "Finland", "France", "Germany", "Hungary", "Iceland", "Ireland", "Israel", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Panama", "Peru", "Philippines", "Poland", "Portugal", "Republic of Korea", "Republic of Moldova", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom", "United States of America"], "name": "Location:"}, "init": {"location_name": "Italy"}}, "selector005": {"type": "multi", "fields": ["prediction_date"], "empty": "none", "toggle": "true"}}, "transform": [{"filter": {"selection": "Location"}}]}, {"data": {"name": "data-52aa4eb0790099b59f7e85f224d198b9"}, "mark": {"type": "rule", "color": "goldenrod", "strokeDash": [3, 3]}, "encoding": {"size": {"value": 1}, "x": {"type": "temporal", "aggregate": "min", "field": "date"}}, "transform": [{"filter": "datum.date > Date_date_reported && datum.date < 1596240000000.0"}]}]}, {"data": {"url": "data_predictions_countries.json"}, "mark": "rect", "encoding": {"color": {"condition": {"type": "temporal", "field": "prediction_date", "selection": "selector005"}, "value": "lightgray"}, "y": {"type": "nominal", "axis": {"labelExpr": "utcFormat(datum.value,'%B %d')", "labels": true, "title": ""}, "field": "prediction_date"}}, "selection": {"selector005": {"type": "multi", "fields": ["prediction_date"], "empty": "none", "toggle": "true"}}, "title": {"text": [""], "subtitle": ["Click to select"]}}], "title": {"text": ["COVID-19: Reported Deaths (Red) and IHME Predictions (Blue)"]}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-026c5aa52ccc549c4f1a8c9ea432ffb6": [{"locations": "Belgium", "date": "2020-08-01T00:00:00"}, {"locations": "Malaysia", "date": "2020-08-01T00:00:00"}, {"locations": "Alabama", "date": "2020-08-01T00:00:00"}, {"locations": "Massachusetts", "date": "2020-08-01T00:00:00"}, {"locations": "Vermont", "date": "2020-08-01T00:00:00"}, {"locations": "Croatia", "date": "2020-08-01T00:00:00"}, {"locations": "Austria", "date": "2020-08-01T00:00:00"}, {"locations": "New Jersey", "date": "2020-08-01T00:00:00"}, {"locations": "Germany", "date": "2020-08-01T00:00:00"}, {"locations": "Iceland", "date": "2020-08-01T00:00:00"}, {"locations": "Indiana", "date": "2020-08-01T00:00:00"}, {"locations": "Estonia", "date": "2020-08-01T00:00:00"}, {"locations": "Connecticut", "date": "2020-08-01T00:00:00"}, {"locations": "Kentucky", "date": "2020-08-01T00:00:00"}, {"locations": "Cyprus", "date": "2020-08-01T00:00:00"}, {"locations": "Republic of Korea", "date": "2020-08-01T00:00:00"}, {"locations": "Florida", "date": "2020-08-01T00:00:00"}, {"locations": "California", "date": "2020-08-01T00:00:00"}, {"locations": "Philippines", "date": "2020-08-01T00:00:00"}, {"locations": "Montana", "date": "2020-08-01T00:00:00"}, {"locations": "Finland", "date": "2020-08-01T00:00:00"}, {"locations": "Lithuania", "date": "2020-08-01T00:00:00"}, {"locations": "Portugal", "date": "2020-08-01T00:00:00"}, {"locations": "Malta", "date": "2020-08-01T00:00:00"}, {"locations": "North Carolina", "date": "2020-08-01T00:00:00"}, {"locations": "Hawaii", "date": "2020-08-01T00:00:00"}, {"locations": "Puerto Rico", "date": "2020-08-01T00:00:00"}, {"locations": "North Dakota", "date": "2020-08-01T00:00:00"}, {"locations": "Georgia", "date": "2020-08-01T00:00:00"}, {"locations": "Switzerland", "date": "2020-08-01T00:00:00"}, {"locations": "Ukraine", "date": "2020-08-01T00:00:00"}, {"locations": "Turkey", "date": "2020-08-01T00:00:00"}, {"locations": "Illinois", "date": "2020-08-01T00:00:00"}, {"locations": "Louisiana", "date": "2020-08-01T00:00:00"}, {"locations": "Ireland", "date": "2020-08-01T00:00:00"}, {"locations": "Minnesota", "date": "2020-08-01T00:00:00"}, {"locations": "South Dakota", "date": "2020-08-01T00:00:00"}, {"locations": "Delaware", "date": "2020-08-01T00:00:00"}, {"locations": "Norway", "date": "2020-08-01T00:00:00"}, {"locations": "Chile", "date": "2020-08-01T00:00:00"}, {"locations": "Idaho", "date": "2020-08-01T00:00:00"}, {"locations": "Luxembourg", "date": "2020-08-01T00:00:00"}, {"locations": "Spain", "date": "2020-08-01T00:00:00"}, {"locations": "Virginia", "date": "2020-08-01T00:00:00"}, {"locations": "Kansas", "date": "2020-08-01T00:00:00"}, {"locations": "Arizona", "date": "2020-08-01T00:00:00"}, {"locations": "West Virginia", "date": "2020-08-01T00:00:00"}, {"locations": "Colombia", "date": "2020-08-01T00:00:00"}, {"locations": "United Kingdom", "date": "2020-08-01T00:00:00"}, {"locations": "Arkansas", "date": "2020-08-01T00:00:00"}, {"locations": "Slovenia", "date": "2020-08-01T00:00:00"}, {"locations": "Israel", "date": "2020-08-01T00:00:00"}, {"locations": "New York", "date": "2020-08-01T00:00:00"}, {"locations": "Mexico", "date": "2020-08-01T00:00:00"}, {"locations": "Utah", "date": "2020-08-01T00:00:00"}, {"locations": "Egypt", "date": "2020-08-01T00:00:00"}, {"locations": "Denmark", "date": "2020-08-01T00:00:00"}, {"locations": "Romania", "date": "2020-08-01T00:00:00"}, {"locations": "Italy", "date": "2020-08-01T00:00:00"}, {"locations": "Colorado", "date": "2020-08-01T00:00:00"}, {"locations": "Nevada", "date": "2020-08-01T00:00:00"}, {"locations": "Sweden", "date": "2020-08-01T00:00:00"}, {"locations": "Dominican Republic", "date": "2020-08-01T00:00:00"}, {"locations": "Hungary", "date": "2020-08-01T00:00:00"}, {"locations": "Oregon", "date": "2020-08-01T00:00:00"}, {"locations": "Brazil", "date": "2020-08-01T00:00:00"}, {"locations": "Wisconsin", "date": "2020-08-01T00:00:00"}, {"locations": "Nebraska", "date": "2020-08-01T00:00:00"}, {"locations": "Ecuador", "date": "2020-08-01T00:00:00"}, {"locations": "Maine", "date": "2020-08-01T00:00:00"}, {"locations": "France", "date": "2020-08-01T00:00:00"}, {"locations": "Maryland", "date": "2020-08-01T00:00:00"}, {"locations": "Iowa", "date": "2020-08-01T00:00:00"}, {"locations": "Republic of Moldova", "date": "2020-08-01T00:00:00"}, {"locations": "Oklahoma", "date": "2020-08-01T00:00:00"}, {"locations": "Michigan", "date": "2020-08-01T00:00:00"}, {"locations": "New Mexico", "date": "2020-08-01T00:00:00"}, {"locations": "Pennsylvania", "date": "2020-08-01T00:00:00"}, {"locations": "Texas", "date": "2020-08-01T00:00:00"}, {"locations": "New Hampshire", "date": "2020-08-01T00:00:00"}, {"locations": "Tennessee", "date": "2020-08-01T00:00:00"}, {"locations": "Panama", "date": "2020-08-01T00:00:00"}, {"locations": "Missouri", "date": "2020-08-01T00:00:00"}, {"locations": "South Carolina", "date": "2020-08-01T00:00:00"}, {"locations": "Canada", "date": "2020-08-01T00:00:00"}, {"locations": "Poland", "date": "2020-08-01T00:00:00"}, {"locations": "Rhode Island", "date": "2020-08-01T00:00:00"}, {"locations": "Ohio", "date": "2020-08-01T00:00:00"}, {"locations": "Latvia", "date": "2020-08-01T00:00:00"}, {"locations": "Argentina", "date": "2020-08-01T00:00:00"}, {"locations": "Mississippi", "date": "2020-08-01T00:00:00"}, {"locations": "Alaska", "date": "2020-08-01T00:00:00"}, {"locations": "Czechia", "date": "2020-08-01T00:00:00"}, {"locations": "Netherlands", "date": "2020-08-01T00:00:00"}, {"locations": "Bulgaria", "date": "2020-08-01T00:00:00"}, {"locations": "District of Columbia", "date": "2020-08-01T00:00:00"}, {"locations": "United States of America", "date": "2020-08-01T00:00:00"}, {"locations": "Peru", "date": "2020-08-01T00:00:00"}, {"locations": "Wyoming", "date": "2020-08-01T00:00:00"}, {"locations": "Slovakia", "date": "2020-08-01T00:00:00"}, {"locations": "Washington", "date": "2020-08-01T00:00:00"}], "data-52aa4eb0790099b59f7e85f224d198b9": [{"date": "2020-02-23T00:00:00"}, {"date": "2020-02-24T00:00:00"}, {"date": "2020-02-25T00:00:00"}, {"date": "2020-02-26T00:00:00"}, {"date": "2020-02-27T00:00:00"}, {"date": "2020-02-28T00:00:00"}, {"date": "2020-02-29T00:00:00"}, {"date": "2020-03-01T00:00:00"}, {"date": "2020-03-02T00:00:00"}, {"date": "2020-03-03T00:00:00"}, {"date": "2020-03-04T00:00:00"}, {"date": "2020-03-05T00:00:00"}, {"date": "2020-03-06T00:00:00"}, {"date": "2020-03-07T00:00:00"}, {"date": "2020-03-08T00:00:00"}, {"date": "2020-03-09T00:00:00"}, {"date": "2020-03-10T00:00:00"}, {"date": "2020-03-11T00:00:00"}, {"date": "2020-03-12T00:00:00"}, {"date": "2020-03-13T00:00:00"}, {"date": "2020-03-14T00:00:00"}, {"date": "2020-03-15T00:00:00"}, {"date": "2020-03-16T00:00:00"}, {"date": "2020-03-17T00:00:00"}, {"date": "2020-03-18T00:00:00"}, {"date": "2020-03-19T00:00:00"}, {"date": "2020-03-20T00:00:00"}, {"date": "2020-03-21T00:00:00"}, {"date": "2020-03-22T00:00:00"}, {"date": "2020-03-23T00:00:00"}, {"date": "2020-03-24T00:00:00"}, {"date": "2020-03-25T00:00:00"}, {"date": "2020-03-26T00:00:00"}, {"date": "2020-03-27T00:00:00"}, {"date": "2020-03-28T00:00:00"}, {"date": "2020-03-29T00:00:00"}, {"date": "2020-03-30T00:00:00"}, {"date": "2020-03-31T00:00:00"}, {"date": "2020-04-01T00:00:00"}, {"date": "2020-04-02T00:00:00"}, {"date": "2020-04-03T00:00:00"}, {"date": "2020-04-04T00:00:00"}, {"date": "2020-04-05T00:00:00"}, {"date": "2020-04-06T00:00:00"}, {"date": "2020-04-07T00:00:00"}, {"date": "2020-04-08T00:00:00"}, {"date": "2020-04-09T00:00:00"}, {"date": "2020-04-10T00:00:00"}, {"date": "2020-04-11T00:00:00"}, {"date": "2020-04-12T00:00:00"}, {"date": "2020-04-13T00:00:00"}, {"date": "2020-04-14T00:00:00"}, {"date": "2020-04-15T00:00:00"}, {"date": "2020-04-16T00:00:00"}, {"date": "2020-04-17T00:00:00"}, {"date": "2020-04-18T00:00:00"}, {"date": "2020-04-19T00:00:00"}, {"date": "2020-04-20T00:00:00"}, {"date": "2020-04-21T00:00:00"}, {"date": "2020-04-22T00:00:00"}, {"date": "2020-04-23T00:00:00"}, {"date": "2020-04-24T00:00:00"}, {"date": "2020-04-25T00:00:00"}, {"date": "2020-04-26T00:00:00"}, {"date": "2020-04-27T00:00:00"}, {"date": "2020-04-28T00:00:00"}, {"date": "2020-04-29T00:00:00"}, {"date": "2020-04-30T00:00:00"}, {"date": "2020-05-01T00:00:00"}, {"date": "2020-05-02T00:00:00"}, {"date": "2020-05-03T00:00:00"}, {"date": "2020-05-04T00:00:00"}, {"date": "2020-05-05T00:00:00"}, {"date": "2020-05-06T00:00:00"}, {"date": "2020-05-07T00:00:00"}, {"date": "2020-05-08T00:00:00"}, {"date": "2020-05-09T00:00:00"}, {"date": "2020-05-10T00:00:00"}, {"date": "2020-05-11T00:00:00"}, {"date": "2020-05-12T00:00:00"}, {"date": "2020-05-13T00:00:00"}, {"date": "2020-05-14T00:00:00"}, {"date": "2020-05-15T00:00:00"}, {"date": "2020-05-16T00:00:00"}, {"date": "2020-05-17T00:00:00"}, {"date": "2020-05-18T00:00:00"}, {"date": "2020-05-19T00:00:00"}, {"date": "2020-05-20T00:00:00"}, {"date": "2020-05-21T00:00:00"}, {"date": "2020-05-22T00:00:00"}, {"date": "2020-05-23T00:00:00"}, {"date": "2020-05-24T00:00:00"}, {"date": "2020-05-25T00:00:00"}, {"date": "2020-05-26T00:00:00"}, {"date": "2020-05-27T00:00:00"}, {"date": "2020-05-28T00:00:00"}, {"date": "2020-05-29T00:00:00"}, {"date": "2020-05-30T00:00:00"}, {"date": "2020-05-31T00:00:00"}, {"date": "2020-06-01T00:00:00"}, {"date": "2020-06-02T00:00:00"}, {"date": "2020-06-03T00:00:00"}, {"date": "2020-06-04T00:00:00"}, {"date": "2020-06-05T00:00:00"}, {"date": "2020-06-06T00:00:00"}, {"date": "2020-06-07T00:00:00"}, {"date": "2020-06-08T00:00:00"}, {"date": "2020-06-09T00:00:00"}, {"date": "2020-06-10T00:00:00"}, {"date": "2020-06-11T00:00:00"}, {"date": "2020-06-12T00:00:00"}, {"date": "2020-06-13T00:00:00"}, {"date": "2020-06-14T00:00:00"}, {"date": "2020-06-15T00:00:00"}, {"date": "2020-06-16T00:00:00"}, {"date": "2020-06-17T00:00:00"}, {"date": "2020-06-18T00:00:00"}, {"date": "2020-06-19T00:00:00"}, {"date": "2020-06-20T00:00:00"}, {"date": "2020-06-21T00:00:00"}, {"date": "2020-06-22T00:00:00"}, {"date": "2020-06-23T00:00:00"}, {"date": "2020-06-24T00:00:00"}, {"date": "2020-06-25T00:00:00"}, {"date": "2020-06-26T00:00:00"}, {"date": "2020-06-27T00:00:00"}, {"date": "2020-06-28T00:00:00"}, {"date": "2020-06-29T00:00:00"}, {"date": "2020-06-30T00:00:00"}, {"date": "2020-07-01T00:00:00"}, {"date": "2020-07-02T00:00:00"}, {"date": "2020-07-03T00:00:00"}, {"date": "2020-07-04T00:00:00"}, {"date": "2020-07-05T00:00:00"}, {"date": "2020-07-06T00:00:00"}, {"date": "2020-07-07T00:00:00"}, {"date": "2020-07-08T00:00:00"}, {"date": "2020-07-09T00:00:00"}, {"date": "2020-07-10T00:00:00"}, {"date": "2020-07-11T00:00:00"}, {"date": "2020-07-12T00:00:00"}, {"date": "2020-07-13T00:00:00"}, {"date": "2020-07-14T00:00:00"}, {"date": "2020-07-15T00:00:00"}, {"date": "2020-07-16T00:00:00"}, {"date": "2020-07-17T00:00:00"}, {"date": "2020-07-18T00:00:00"}, {"date": "2020-07-19T00:00:00"}, {"date": "2020-07-20T00:00:00"}, {"date": "2020-07-21T00:00:00"}, {"date": "2020-07-22T00:00:00"}, {"date": "2020-07-23T00:00:00"}, {"date": "2020-07-24T00:00:00"}, {"date": "2020-07-25T00:00:00"}, {"date": "2020-07-26T00:00:00"}, {"date": "2020-07-27T00:00:00"}, {"date": "2020-07-28T00:00:00"}, {"date": "2020-07-29T00:00:00"}, {"date": "2020-07-30T00:00:00"}, {"date": "2020-07-31T00:00:00"}, {"date": "2020-08-01T00:00:00"}]}};
+       var embedOpt = {"mode": "vega-lite",
+              "downloadFileName": "IHME_model_comparison_vis",
+              "scaleFactor":2,
+              "renderer": "svg",
+              "width": 400,
+              "height": 300,
+               "padding": 0,
+               };
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+    const el = document.getElementById('vis');
+        vegaEmbed("#vis", spec, embedOpt)
+          .then(function (result) {
+            document.querySelector("#vis .marks").removeAttribute("width");
+            document.querySelector("#vis .marks").removeAttribute("height");
+            document
+              .querySelector('input[type="range"]')
+              .setAttribute(
+                "style",
+                "width:" + document.getElementById("vis").offsetWidth / 2 + "px"
+              );
+            window.onresize = function (event) {
+              document.querySelector("#vis .marks").removeAttribute("height");
+              document.querySelector("#vis .marks").removeAttribute("width");
+              document
+                .querySelector('input[type="range"]')
+                .setAttribute(
+                  "style",
+                  "width:" +
+                    document.getElementById("vis").offsetWidth / 2 +
+                    "px"
+                );
+            };
+          })
+          .catch((error) => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
