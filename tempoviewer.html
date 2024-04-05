@@ -232,7 +232,7 @@
             <img src="colorbar.png" width="487" height="102">
         </div>
         <div>
-            <input type="range" min="1" max="171" value="1" class="slider" id="slider"><label id="sliderLabel"></label>
+            <input type="range" min="0" max="172" value="0" class="slider" id="slider"><label id="sliderLabel"></label>
         </div>
         <button id="play" style="margin-right:10px;">Play</button><button id="stop">Stop</button>
     </div>
@@ -258,7 +258,181 @@
 
 <script>
 
-
+const datetimes = [
+'Sun, Dec 17, 2023 -- 12:24 (UTC)',
+'Sun, Dec 17, 2023 -- 13:04 (UTC)',
+'Sun, Dec 17, 2023 -- 13:44 (UTC)',
+'Sun, Dec 17, 2023 -- 14:24 (UTC)',
+'Sun, Dec 17, 2023 -- 15:04 (UTC)',
+'Sun, Dec 17, 2023 -- 16:04 (UTC)',
+'Sun, Dec 17, 2023 -- 17:04 (UTC)',
+'Sun, Dec 17, 2023 -- 18:04 (UTC)',
+'Sun, Dec 17, 2023 -- 19:04 (UTC)',
+'Sun, Dec 17, 2023 -- 20:04 (UTC)',
+'Sun, Dec 17, 2023 -- 21:04 (UTC)',
+'Sun, Dec 17, 2023 -- 21:44 (UTC)',
+'Sun, Dec 17, 2023 -- 22:24 (UTC)',
+'Sun, Dec 17, 2023 -- 23:04 (UTC)',
+'Mon, Dec 18, 2023 -- 12:24 (UTC)',
+'Mon, Dec 18, 2023 -- 13:04 (UTC)',
+'Mon, Dec 18, 2023 -- 13:45 (UTC)',
+'Mon, Dec 18, 2023 -- 14:25 (UTC)',
+'Mon, Dec 18, 2023 -- 15:05 (UTC)',
+'Mon, Dec 18, 2023 -- 16:05 (UTC)',
+'Mon, Dec 18, 2023 -- 17:05 (UTC)',
+'Mon, Dec 18, 2023 -- 18:05 (UTC)',
+'Mon, Dec 18, 2023 -- 19:05 (UTC)',
+'Mon, Dec 18, 2023 -- 20:05 (UTC)',
+'Mon, Dec 18, 2023 -- 21:05 (UTC)',
+'Mon, Dec 18, 2023 -- 21:45 (UTC)',
+'Mon, Dec 18, 2023 -- 22:25 (UTC)',
+'Mon, Dec 18, 2023 -- 23:05 (UTC)',
+'Tue, Dec 19, 2023 -- 12:25 (UTC)',
+'Tue, Dec 19, 2023 -- 13:05 (UTC)',
+'Tue, Dec 19, 2023 -- 13:45 (UTC)',
+'Tue, Dec 19, 2023 -- 14:25 (UTC)',
+'Tue, Dec 19, 2023 -- 15:05 (UTC)',
+'Tue, Dec 19, 2023 -- 16:05 (UTC)',
+'Tue, Dec 19, 2023 -- 17:05 (UTC)',
+'Tue, Dec 19, 2023 -- 18:05 (UTC)',
+'Tue, Dec 19, 2023 -- 19:05 (UTC)',
+'Tue, Dec 19, 2023 -- 20:05 (UTC)',
+'Tue, Dec 19, 2023 -- 21:05 (UTC)',
+'Tue, Dec 19, 2023 -- 21:45 (UTC)',
+'Tue, Dec 19, 2023 -- 22:25 (UTC)',
+'Tue, Dec 19, 2023 -- 23:05 (UTC)',
+'Wed, Dec 20, 2023 -- 12:25 (UTC)',
+'Wed, Dec 20, 2023 -- 13:05 (UTC)',
+'Wed, Dec 20, 2023 -- 13:46 (UTC)',
+'Wed, Dec 20, 2023 -- 14:26 (UTC)',
+'Wed, Dec 20, 2023 -- 15:06 (UTC)',
+'Wed, Dec 20, 2023 -- 16:06 (UTC)',
+'Wed, Dec 20, 2023 -- 17:06 (UTC)',
+'Wed, Dec 20, 2023 -- 18:06 (UTC)',
+'Wed, Dec 20, 2023 -- 19:06 (UTC)',
+'Wed, Dec 20, 2023 -- 20:06 (UTC)',
+'Wed, Dec 20, 2023 -- 21:06 (UTC)',
+'Wed, Dec 20, 2023 -- 21:46 (UTC)',
+'Wed, Dec 20, 2023 -- 22:26 (UTC)',
+'Wed, Dec 20, 2023 -- 23:06 (UTC)',
+'Thu, Dec 21, 2023 -- 12:46 (UTC)',
+'Thu, Dec 21, 2023 -- 13:26 (UTC)',
+'Thu, Dec 21, 2023 -- 14:06 (UTC)',
+'Thu, Dec 21, 2023 -- 15:06 (UTC)',
+'Thu, Dec 21, 2023 -- 16:06 (UTC)',
+'Thu, Dec 21, 2023 -- 17:06 (UTC)',
+'Thu, Dec 21, 2023 -- 18:06 (UTC)',
+'Thu, Dec 21, 2023 -- 19:06 (UTC)',
+'Thu, Dec 21, 2023 -- 20:06 (UTC)',
+'Thu, Dec 21, 2023 -- 21:06 (UTC)',
+'Thu, Dec 21, 2023 -- 22:06 (UTC)',
+'Thu, Dec 21, 2023 -- 22:46 (UTC)',
+'Fri, Dec 22, 2023 -- 12:47 (UTC)',
+'Fri, Dec 22, 2023 -- 13:27 (UTC)',
+'Fri, Dec 22, 2023 -- 14:07 (UTC)',
+'Fri, Dec 22, 2023 -- 15:07 (UTC)',
+'Fri, Dec 22, 2023 -- 16:07 (UTC)',
+'Fri, Dec 22, 2023 -- 17:07 (UTC)',
+'Fri, Dec 22, 2023 -- 18:07 (UTC)',
+'Fri, Dec 22, 2023 -- 19:07 (UTC)',
+'Fri, Dec 22, 2023 -- 20:07 (UTC)',
+'Fri, Dec 22, 2023 -- 21:07 (UTC)',
+'Fri, Dec 22, 2023 -- 22:07 (UTC)',
+'Fri, Dec 22, 2023 -- 22:47 (UTC)',
+'Sat, Dec 23, 2023 -- 12:54 (UTC)',
+'Sat, Dec 23, 2023 -- 13:27 (UTC)',
+'Sat, Dec 23, 2023 -- 14:07 (UTC)',
+'Sat, Dec 23, 2023 -- 15:07 (UTC)',
+'Sat, Dec 23, 2023 -- 16:07 (UTC)',
+'Sat, Dec 23, 2023 -- 17:07 (UTC)',
+'Sat, Dec 23, 2023 -- 18:07 (UTC)',
+'Sat, Dec 23, 2023 -- 19:07 (UTC)',
+'Sat, Dec 23, 2023 -- 20:07 (UTC)',
+'Sat, Dec 23, 2023 -- 21:07 (UTC)',
+'Sat, Dec 23, 2023 -- 22:07 (UTC)',
+'Sat, Dec 23, 2023 -- 22:47 (UTC)',
+'Sun, Dec 24, 2023 -- 12:48 (UTC)',
+'Sun, Dec 24, 2023 -- 13:28 (UTC)',
+'Sun, Dec 24, 2023 -- 14:08 (UTC)',
+'Sun, Dec 24, 2023 -- 15:08 (UTC)',
+'Sun, Dec 24, 2023 -- 16:08 (UTC)',
+'Sun, Dec 24, 2023 -- 17:08 (UTC)',
+'Sun, Dec 24, 2023 -- 18:08 (UTC)',
+'Sun, Dec 24, 2023 -- 19:08 (UTC)',
+'Sun, Dec 24, 2023 -- 20:08 (UTC)',
+'Sun, Dec 24, 2023 -- 21:08 (UTC)',
+'Sun, Dec 24, 2023 -- 22:08 (UTC)',
+'Sun, Dec 24, 2023 -- 22:48 (UTC)',
+'Mon, Dec 25, 2023 -- 12:48 (UTC)',
+'Mon, Dec 25, 2023 -- 13:28 (UTC)',
+'Mon, Dec 25, 2023 -- 14:08 (UTC)',
+'Mon, Dec 25, 2023 -- 15:08 (UTC)',
+'Mon, Dec 25, 2023 -- 16:08 (UTC)',
+'Mon, Dec 25, 2023 -- 17:08 (UTC)',
+'Mon, Dec 25, 2023 -- 18:08 (UTC)',
+'Mon, Dec 25, 2023 -- 19:08 (UTC)',
+'Mon, Dec 25, 2023 -- 20:08 (UTC)',
+'Mon, Dec 25, 2023 -- 21:08 (UTC)',
+'Mon, Dec 25, 2023 -- 22:08 (UTC)',
+'Mon, Dec 25, 2023 -- 22:48 (UTC)',
+'Tue, Dec 26, 2023 -- 14:57 (UTC)',
+'Tue, Dec 26, 2023 -- 15:09 (UTC)',
+'Tue, Dec 26, 2023 -- 16:09 (UTC)',
+'Tue, Dec 26, 2023 -- 17:09 (UTC)',
+'Tue, Dec 26, 2023 -- 18:09 (UTC)',
+'Tue, Dec 26, 2023 -- 19:09 (UTC)',
+'Tue, Dec 26, 2023 -- 20:09 (UTC)',
+'Tue, Dec 26, 2023 -- 21:09 (UTC)',
+'Tue, Dec 26, 2023 -- 22:09 (UTC)',
+'Tue, Dec 26, 2023 -- 22:49 (UTC)',
+'Wed, Dec 27, 2023 -- 12:49 (UTC)',
+'Wed, Dec 27, 2023 -- 13:29 (UTC)',
+'Wed, Dec 27, 2023 -- 14:09 (UTC)',
+'Wed, Dec 27, 2023 -- 15:09 (UTC)',
+'Wed, Dec 27, 2023 -- 16:09 (UTC)',
+'Wed, Dec 27, 2023 -- 17:09 (UTC)',
+'Wed, Dec 27, 2023 -- 18:09 (UTC)',
+'Wed, Dec 27, 2023 -- 19:09 (UTC)',
+'Wed, Dec 27, 2023 -- 20:09 (UTC)',
+'Wed, Dec 27, 2023 -- 21:09 (UTC)',
+'Wed, Dec 27, 2023 -- 22:09 (UTC)',
+'Wed, Dec 27, 2023 -- 22:49 (UTC)',
+'Thu, Dec 28, 2023 -- 12:50 (UTC)',
+'Thu, Dec 28, 2023 -- 13:30 (UTC)',
+'Thu, Dec 28, 2023 -- 14:10 (UTC)',
+'Thu, Dec 28, 2023 -- 15:10 (UTC)',
+'Thu, Dec 28, 2023 -- 16:10 (UTC)',
+'Thu, Dec 28, 2023 -- 17:10 (UTC)',
+'Thu, Dec 28, 2023 -- 18:10 (UTC)',
+'Thu, Dec 28, 2023 -- 19:10 (UTC)',
+'Thu, Dec 28, 2023 -- 20:10 (UTC)',
+'Thu, Dec 28, 2023 -- 21:10 (UTC)',
+'Thu, Dec 28, 2023 -- 22:10 (UTC)',
+'Thu, Dec 28, 2023 -- 22:50 (UTC)',
+'Fri, Dec 29, 2023 -- 12:50 (UTC)',
+'Fri, Dec 29, 2023 -- 13:30 (UTC)',
+'Fri, Dec 29, 2023 -- 14:10 (UTC)',
+'Fri, Dec 29, 2023 -- 15:10 (UTC)',
+'Fri, Dec 29, 2023 -- 16:10 (UTC)',
+'Fri, Dec 29, 2023 -- 17:10 (UTC)',
+'Fri, Dec 29, 2023 -- 18:10 (UTC)',
+'Fri, Dec 29, 2023 -- 19:10 (UTC)',
+'Fri, Dec 29, 2023 -- 20:10 (UTC)',
+'Fri, Dec 29, 2023 -- 21:10 (UTC)',
+'Fri, Dec 29, 2023 -- 22:10 (UTC)',
+'Fri, Dec 29, 2023 -- 22:50 (UTC)',
+'Sat, Dec 30, 2023 -- 12:50 (UTC)',
+'Sat, Dec 30, 2023 -- 13:31 (UTC)',
+'Sat, Dec 30, 2023 -- 14:11 (UTC)',
+'Sat, Dec 30, 2023 -- 15:11 (UTC)',
+'Sat, Dec 30, 2023 -- 16:11 (UTC)',
+'Sat, Dec 30, 2023 -- 18:19 (UTC)',
+'Sat, Dec 30, 2023 -- 19:11 (UTC)',
+'Sat, Dec 30, 2023 -- 20:11 (UTC)',
+'Sat, Dec 30, 2023 -- 21:11 (UTC)',
+'Sat, Dec 30, 2023 -- 22:11 (UTC)',
+'Sat, Dec 30, 2023 -- 22:51 (UTC)',
+]
 
 var timeValues = []
 for (var i = 0; i <= 172; i++) {
@@ -317,7 +491,7 @@ var positronLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_l
 document.getElementById("slider").max = ""+timeValues.length+"";
 
 //setting default label of the slider
-document.getElementById("sliderLabel").innerHTML = timeValues[0];
+document.getElementById("sliderLabel").innerHTML = datetimes[0];
 
 
 var imageOverlay = new L.ImageOverlay(url, bounds, {
@@ -337,7 +511,7 @@ var overlayMaps = {
 //function when sliding
 slider.oninput = function() {
   //changing the label
-  document.getElementById("sliderLabel").innerHTML = timeValues[this.value-1];
+  document.getElementById("sliderLabel").innerHTML = datetimes[this.value-1];
   //setting the url of the overlay
   imageOverlay.setUrl(urlPrefix+timeValues[this.value-1]+urlPostfix);
 }
@@ -362,7 +536,7 @@ function play() {
         play()
         }
         //changing the label
-        document.getElementById("sliderLabel").innerHTML = timeValues[Number(val)-1];
+        document.getElementById("sliderLabel").innerHTML = datetimes[Number(val)-1];
         //setting the url of the overlay
         imageOverlay.setUrl(urlPrefix+timeValues[Number(val)-1]+urlPostfix);
 
@@ -391,9 +565,10 @@ document.getElementById('stop').style.display = "none";
 
 document.getElementById('home').onclick = function(e){
   map.fitBounds(bounds);
-  document.getElementById('slider').value = 0
-  document.getElementById('sliderLabel').innerHTML = 0
-  imageOverlay.setUrl(urlPrefix+timeValues[0]+urlPostfix);
+  var timestep = 0
+  document.getElementById('slider').value = timestep
+  document.getElementById('sliderLabel').innerHTML = datetimes[timestep]
+  imageOverlay.setUrl(urlPrefix+timeValues[timestep]+urlPostfix);
 
 }
 
@@ -402,9 +577,10 @@ document.getElementById('texas').onclick = function(e){
     new L.LatLng(25.72, -108.23),
     new L.LatLng(36.69, -92.9));
   map.fitBounds(texas_bounds);
-  document.getElementById('slider').value = 10
-  document.getElementById('sliderLabel').innerHTML = 10
-  imageOverlay.setUrl(urlPrefix+timeValues[10]+urlPostfix);
+  var timestep = 10
+  document.getElementById('slider').value = timestep
+  document.getElementById('sliderLabel').innerHTML = datetimes[timestep]
+  imageOverlay.setUrl(urlPrefix+timeValues[timestep]+urlPostfix);
 }
 
 document.getElementById('northeast').onclick = function(e){
@@ -412,9 +588,10 @@ document.getElementById('northeast').onclick = function(e){
     new L.LatLng(40.3, -74.5),
     new L.LatLng(43.5, -69.6));
   map.fitBounds(northeast_bounds);
-  document.getElementById('slider').value = 72
-  document.getElementById('sliderLabel').innerHTML = 72
-  imageOverlay.setUrl(urlPrefix+timeValues[72]+urlPostfix);
+  var timestep = 72
+  document.getElementById('slider').value = timestep
+  document.getElementById('sliderLabel').innerHTML = datetimes[timestep]
+  imageOverlay.setUrl(urlPrefix+timeValues[timestep]+urlPostfix);
 
 }
 
