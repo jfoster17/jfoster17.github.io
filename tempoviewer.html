@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="container-with-sidebars.css">
+    <link rel="stylesheet" href="simple.css" type="text/css">
+
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+ <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+<style>
+
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #484c4a;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #484c4a;
+  cursor: pointer;
+}
+
+
+</style>
+</head>
+<body>
+
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_0_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_1_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_2_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_3_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_4_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_5_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_6_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_7_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_8_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_9_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_10_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_11_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_12_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_13_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_14_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_15_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_16_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_17_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_18_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_19_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_20_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_21_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_22_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_23_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_24_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_25_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_26_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_27_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_28_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_29_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_30_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_31_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_32_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_33_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_34_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_35_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_36_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_37_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_38_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_39_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_40_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_41_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_42_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_43_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_44_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_45_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_46_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_47_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_48_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_49_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_50_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_51_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_52_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_53_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_54_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_55_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_56_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_57_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_58_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_59_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_60_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_61_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_62_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_63_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_64_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_65_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_66_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_67_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_68_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_69_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_70_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_71_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_72_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_73_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_74_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_75_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_76_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_77_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_78_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_79_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_80_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_81_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_82_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_83_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_84_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_85_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_86_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_87_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_88_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_89_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_90_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_91_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_92_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_93_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_94_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_95_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_96_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_97_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_98_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_99_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_100_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_101_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_102_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_103_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_104_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_105_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_106_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_107_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_108_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_109_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_110_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_111_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_112_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_113_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_114_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_115_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_116_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_117_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_118_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_119_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_120_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_121_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_122_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_123_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_124_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_125_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_126_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_127_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_128_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_129_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_130_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_131_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_132_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_133_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_134_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_135_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_136_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_137_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_138_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_139_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_140_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_141_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_142_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_143_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_144_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_145_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_146_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_147_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_148_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_149_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_150_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_151_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_152_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_153_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_154_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_155_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_156_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_157_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_158_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_159_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_160_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_161_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_162_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_163_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_164_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_165_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_166_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_167_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_168_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_169_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_170_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_171_cividis_stretch.png" as="image">
+    <link rel="prefetch" href="https://tempo-demo-images.s3.amazonaws.com/img_172_cividis_stretch.png" as="image">
+
+<div class="content-with-sidebars">
+    <div>
+        <div id="map" style="width: 100%; height: 600px;"></div>
+        <div style="text-align: center;">
+            <img src="colorbar.png" width="487" height="102">
+        </div>
+        <div>
+            <input type="range" min="1" max="171" value="1" class="slider" id="slider"><label id="sliderLabel"></label>
+        </div>
+        <button id="play" style="margin-right:10px;">Play</button><button id="stop">Stop</button>
+    </div>
+
+    <div>
+    <article>
+        <h2>TEMPO Data</h2>
+        
+        <p>Some descriptive text about TEMPO and the data we are showing here.</p>
+    </article>
+    </div>
+    <div>
+        <button id="home">Home</button>
+        <br>
+        <button id="texas">Texas</button>
+        <br>
+        <button id="northeast">Northeast</button>
+    </div>
+</div>
+      
+
+
+
+<script>
+
+
+
+var timeValues = []
+for (var i = 0; i <= 172; i++) {
+   timeValues.push(i);
+}
+
+var urlPrefix = "https://tempo-demo-images.s3.amazonaws.com/img_";
+var urlPostfix = "_cividis_stretch.png";
+
+var url = urlPrefix+timeValues[0]+urlPostfix;
+
+
+
+var map = L.map('map').setView([40, -50], 3, {
+    crs: L.CRS.EPSG4326
+});
+
+var basemaps = {
+    'Positron': L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+        crs: L.CRS.EPSG4326
+    }),
+
+};
+
+//var coastlines = L.geoJson(null, {
+//    style: {color: 'black', weight: 1, opacity: 0.8}
+//})
+
+async function addCoastlines() {
+    const response = await fetch("coastlines.geojson");
+    const data = await response.json();
+    var coastlines = L.geoJson(data, {
+    style: {color: 'black', weight: 1, opacity: 0.8}
+    }).addTo(map);
+}
+
+addCoastlines();
+//coastlines.addTo(map);
+basemaps["Positron"].addTo(map);
+
+var bounds = new L.LatLngBounds(
+    new L.LatLng(17.025, -129.975),
+    new L.LatLng(63.975, -54.475));
+map.fitBounds(bounds);
+
+map.createPane('labels');
+map.getPane('labels').style.zIndex = 650;
+map.getPane('labels').style.pointerEvents = 'none';
+
+var positronLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+        attribution: 'OpenStreetMap, CartoDB',
+        pane: 'labels'
+}).addTo(map);
+
+//setting max value of the slider
+document.getElementById("slider").max = ""+timeValues.length+"";
+
+//setting default label of the slider
+document.getElementById("sliderLabel").innerHTML = timeValues[0];
+
+
+var imageOverlay = new L.ImageOverlay(url, bounds, {
+    opacity: 1,
+    interactive: false,
+}).addTo(map);
+
+var overlayMaps = {
+    "TEMPO": imageOverlay,
+    "Place Labels": positronLabels,
+};
+
+
+//L.control.layers(basemaps, overlayMaps).addTo(map);
+
+
+//function when sliding
+slider.oninput = function() {
+  //changing the label
+  document.getElementById("sliderLabel").innerHTML = timeValues[this.value-1];
+  //setting the url of the overlay
+  imageOverlay.setUrl(urlPrefix+timeValues[this.value-1]+urlPostfix);
+}
+
+var playTimeOut;
+
+function play() {
+    playTimeOut = setTimeout(function () {
+        //increasing the slider by 1 (if not already at the end)
+        var val = document.getElementById("slider").value;
+        console.log(val)
+        //if end of slider, stopping
+        if(val == document.getElementById("slider").max){
+            clearTimeout(playTimeOut);
+              //hidding the stop button
+              document.getElementById('stop').style.display = "none";
+              //showing the play button
+              document.getElementById('play').style.display = "block";
+        }
+        else{
+        document.getElementById("slider").value = Number(val)+1
+        play()
+        }
+        //changing the label
+        document.getElementById("sliderLabel").innerHTML = timeValues[Number(val)-1];
+        //setting the url of the overlay
+        imageOverlay.setUrl(urlPrefix+timeValues[Number(val)-1]+urlPostfix);
+
+    }, 100);
+}
+
+document.getElementById('play').onclick = function(e){
+  play()
+  //showing the stop button
+  document.getElementById('stop').style.display = "block";
+  //hidding the play button
+  document.getElementById('play').style.display = "none";
+}
+
+document.getElementById('stop').onclick = function(e){
+  clearTimeout(playTimeOut);
+  //hidding the stop button
+  document.getElementById('stop').style.display = "none";
+  //showing the play button
+  document.getElementById('play').style.display = "block";
+}
+
+//hidding the stop button by default
+document.getElementById('stop').style.display = "none";
+
+
+document.getElementById('home').onclick = function(e){
+  map.fitBounds(bounds);
+  document.getElementById('slider').value = 0
+  document.getElementById('sliderLabel').innerHTML = 0
+  imageOverlay.setUrl(urlPrefix+timeValues[0]+urlPostfix);
+
+}
+
+document.getElementById('texas').onclick = function(e){
+  var texas_bounds = new L.LatLngBounds(
+    new L.LatLng(25.72, -108.23),
+    new L.LatLng(36.69, -92.9));
+  map.fitBounds(texas_bounds);
+  document.getElementById('slider').value = 10
+  document.getElementById('sliderLabel').innerHTML = 10
+  imageOverlay.setUrl(urlPrefix+timeValues[10]+urlPostfix);
+}
+
+document.getElementById('northeast').onclick = function(e){
+  var northeast_bounds = new L.LatLngBounds(
+    new L.LatLng(40.3, -74.5),
+    new L.LatLng(43.5, -69.6));
+  map.fitBounds(northeast_bounds);
+  document.getElementById('slider').value = 72
+  document.getElementById('sliderLabel').innerHTML = 72
+  imageOverlay.setUrl(urlPrefix+timeValues[72]+urlPostfix);
+
+}
+
+
+</script>
+
+</body>
+</html>
